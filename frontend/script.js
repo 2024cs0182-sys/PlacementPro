@@ -152,7 +152,7 @@ if (registerForm) {
 
                 const response =
                     await fetch(
-                        "http://https://placementpro-khij.onrender.com/api/students/register",
+                        "https://placementpro-khij.onrender.com/api/students/register",
                         {
                             method: "POST",
 
@@ -295,7 +295,7 @@ if (loginForm) {
 
                 const response =
                     await fetch(
-                        "http://https://placementpro-khij.onrender.com/api/students/login",
+                        "https://placementpro-khij.onrender.com/api/students/login",
                         {
                             method: "POST",
 
@@ -406,7 +406,7 @@ async function testBackend() {
 
         const response =
             await fetch(
-                "http://https://placementpro-khij.onrender.com/api/hello"
+                "https://placementpro-khij.onrender.com/api/hello"
             );
 
 
