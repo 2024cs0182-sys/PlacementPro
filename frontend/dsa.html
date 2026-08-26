@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DSA Practice | PlacementPro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .header {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .back-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .intro {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+        }
+
+        .intro h1 {
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #6b7280;
+        }
+
+        .stats {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .stat-card span {
+            color: #6b7280;
+        }
+
+        .filters {
+            max-width: 1100px;
+            margin: 0 auto 20px;
+
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+
+            background: white;
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .problems {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        .problem-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .problem-card h3 {
+            margin: 0;
+        }
+
+        .difficulty {
+            padding: 5px 10px;
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .easy {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .hard {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .topic {
+            margin-top: 12px;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .solve-btn {
+            width: 100%;
+            padding: 11px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #111827;
+            color: white;
+
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .solved {
+            background: #16a34a;
+        }
+
+        @media (max-width: 800px) {
+
+            .problems {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+
+    <header class="header">
+
+        <div class="brand">
+            Placement<span>Pro</span>
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="goDashboard()"
+        >
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <section class="intro">
+
+        <h1>
+            💻 Java & DSA Practice
+        </h1>
+
+        <p>
+            Practice programming and DSA problems
+            for placement preparation.
+        </p>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <strong id="totalProblems">
+                0
+            </strong>
+
+            <span>
+                Total Problems
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <strong id="solvedProblems">
+                0
+            </strong>
+
+            <span>
+                Solved
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <strong id="progress">
+                0%
+            </strong>
+
+            <span>
+                Progress
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <section class="filters">
+
+        <button
+            class="filter-btn active"
+            onclick="filterProblems('All', this)"
+        >
+            All
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterProblems('Easy', this)"
+        >
+            Easy
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterProblems('Medium', this)"
+        >
+            Medium
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterProblems('Hard', this)"
+        >
+            Hard
+        </button>
+
+    </section>
+
+
+    <section
+        id="problems"
+        class="problems"
+    ></section>
+
+
+</main>
+
+
+<script>
+
+
+const problems = [
+
+    {
+        id: 1,
+        title: "Reverse a String",
+        difficulty: "Easy",
+        topic: "Java Basics",
+        description:
+            "Write a Java program to reverse a given string."
+    },
+
+    {
+        id: 2,
+        title: "Find Largest Element",
+        difficulty: "Easy",
+        topic: "Arrays",
+        description:
+            "Find the largest element in an integer array."
+    },
+
+    {
+        id: 3,
+        title: "Check Palindrome",
+        difficulty: "Easy",
+        topic: "Strings",
+        description:
+            "Check whether a given string is a palindrome."
+    },
+
+    {
+        id: 4,
+        title: "Find Second Largest",
+        difficulty: "Medium",
+        topic: "Arrays",
+        description:
+            "Find the second largest element without sorting."
+    },
+
+    {
+        id: 5,
+        title: "Check Anagram",
+        difficulty: "Medium",
+        topic: "Strings",
+        description:
+            "Determine whether two strings are anagrams."
+    },
+
+    {
+        id: 6,
+        title: "Two Sum",
+        difficulty: "Medium",
+        topic: "Arrays",
+        description:
+            "Find two numbers whose sum equals a target."
+    },
+
+    {
+        id: 7,
+        title: "Longest Substring",
+        difficulty: "Hard",
+        topic: "Strings",
+        description:
+            "Find the longest substring without repeating characters."
+    },
+
+    {
+        id: 8,
+        title: "Merge Intervals",
+        difficulty: "Hard",
+        topic: "Arrays",
+        description:
+            "Merge all overlapping intervals."
+    }
+
+];
+
+
+let solved =
+    JSON.parse(
+        localStorage.getItem(
+            "javaDsaSolved"
+        )
+    ) || [];
+
+
+function displayProblems(list) {
+
+    const container =
+        document.getElementById(
+            "problems"
+        );
+
+
+    container.innerHTML =
+        list.map(
+            function(problem) {
+
+                const isSolved =
+                    solved.includes(
+                        problem.id
+                    );
+
+
+                return `
+
+                    <div class="problem-card">
+
+                        <div class="problem-top">
+
+                            <h3>
+                                ${problem.id}.
+                                ${problem.title}
+                            </h3>
+
+                            <span
+                                class="difficulty
+                                ${problem.difficulty.toLowerCase()}"
+                            >
+                                ${problem.difficulty}
+                            </span>
+
+                        </div>
+
+
+                        <div class="topic">
+                            ${problem.topic}
+                        </div>
+
+
+                        <div class="description">
+                            ${problem.description}
+                        </div>
+
+
+                        <button
+                            class="solve-btn
+                            ${isSolved ? "solved" : ""}"
+                            onclick="markSolved(${problem.id})"
+                        >
+
+                            ${
+                                isSolved
+                                ? "✓ Solved"
+                                : "Mark as Solved"
+                            }
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    updateStats();
+
+}
+
+
+function filterProblems(
+    difficulty,
+    button
+) {
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            function(btn) {
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    if (difficulty === "All") {
+
+        displayProblems(
+            problems
+        );
+
+        return;
+    }
+
+
+    displayProblems(
+        problems.filter(
+            function(problem) {
+
+                return (
+                    problem.difficulty ===
+                    difficulty
+                );
+
+            }
+        )
+    );
+
+}
+
+
+function markSolved(id) {
+
+    if (!solved.includes(id)) {
+
+        solved.push(id);
+
+        localStorage.setItem(
+            "javaDsaSolved",
+            JSON.stringify(solved)
+        );
+
+    }
+
+
+    displayProblems(
+        problems
+    );
+
+}
+
+
+function updateStats() {
+
+    const total =
+        problems.length;
+
+    const solvedCount =
+        solved.length;
+
+    const percentage =
+        Math.round(
+            (solvedCount / total) * 100
+        );
+
+
+    document.getElementById(
+        "totalProblems"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "solvedProblems"
+    ).textContent =
+        solvedCount;
+
+
+    document.getElementById(
+        "progress"
+    ).textContent =
+        percentage + "%";
+
+}
+
+
+function goDashboard() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+displayProblems(problems);
+
+
+</script>
+
+</body>
+
+</html>

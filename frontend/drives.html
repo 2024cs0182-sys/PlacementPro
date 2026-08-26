@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Drives | PlacementPro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .header {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .back-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .title-section {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+        }
+
+        .title-section h1 {
+            margin-bottom: 8px;
+        }
+
+        .title-section p {
+            color: #6b7280;
+        }
+
+        .drives-container {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .drive-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        .company-name {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .job-role {
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .drive-info {
+            line-height: 1.9;
+            color: #4b5563;
+        }
+
+        .drive-info strong {
+            color: #111827;
+        }
+
+        .skills {
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .skills strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #2563eb;
+            color: white;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .apply-btn.applied {
+            background: #16a34a;
+            cursor: default;
+        }
+
+        .loading,
+        .empty,
+        .error {
+            text-align: center;
+            grid-column: 1 / -1;
+
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+        }
+
+        .loading {
+            color: #2563eb;
+        }
+
+        .empty {
+            color: #6b7280;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        @media (max-width: 800px) {
+
+            .drives-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                gap: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+            Placement<span>Pro</span>
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="goDashboard()"
+        >
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <!-- TITLE -->
+
+    <section class="title-section">
+
+        <h1>
+            💼 Placement Drives
+        </h1>
+
+        <p>
+            Explore upcoming company placement opportunities.
+        </p>
+
+    </section>
+
+
+    <!-- DRIVES -->
+
+    <section
+        id="drivesContainer"
+        class="drives-container"
+    >
+
+        <div class="loading">
+            Loading placement drives...
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+
+// =========================================
+// LOAD STUDENT
+// =========================================
+
+function getLoggedInStudent() {
+
+    const savedStudent =
+        localStorage.getItem("student");
+
+    if (!savedStudent) {
+
+        window.location.href =
+            "login.html";
+
+        return null;
+    }
+
+    try {
+
+        return JSON.parse(savedStudent);
+
+    } catch (error) {
+
+        localStorage.removeItem("student");
+
+        window.location.href =
+            "login.html";
+
+        return null;
+    }
+}
+
+
+
+// =========================================
+// LOAD PLACEMENT DRIVES
+// =========================================
+
+async function loadDrives() {
+
+    const container =
+        document.getElementById(
+            "drivesContainer"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/drives"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load drives"
+            );
+        }
+
+
+        const drives =
+            await response.json();
+
+
+        console.log(
+            "Placement drives:",
+            drives
+        );
+
+
+        if (
+            !drives ||
+            drives.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        No placement drives available
+                    </h3>
+
+                    <p>
+                        New opportunities will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML =
+            drives.map(
+                function (drive) {
+
+                    return `
+
+                        <div class="drive-card">
+
+                            <div class="company-name">
+
+                                ${escapeHTML(
+                                    drive.companyName ||
+                                    "Company"
+                                )}
+
+                            </div>
+
+
+                            <div class="job-role">
+
+                                ${escapeHTML(
+                                    drive.jobRole ||
+                                    "Software Engineer"
+                                )}
+
+                            </div>
+
+
+                            <div class="drive-info">
+
+                                <div>
+                                    <strong>
+                                        📍 Location:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        drive.location ||
+                                        "Not specified"
+                                    )}
+                                </div>
+
+
+                                <div>
+                                    <strong>
+                                        💰 Package:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        drive.packageOffered ||
+                                        "Not specified"
+                                    )}
+                                </div>
+
+
+                                <div>
+                                    <strong>
+                                        🎓 Eligibility:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        drive.eligibility ||
+                                        "Not specified"
+                                    )}
+                                </div>
+
+
+                                <div>
+                                    <strong>
+                                        📅 Drive Date:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        drive.driveDate ||
+                                        "Not specified"
+                                    )}
+                                </div>
+
+
+                                <div>
+                                    <strong>
+                                        ⏰ Deadline:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        drive.applicationDeadline ||
+                                        "Not specified"
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div class="skills">
+
+                                <strong>
+                                    🛠️ Skills Required
+                                </strong>
+
+                                ${escapeHTML(
+                                    drive.skillsRequired ||
+                                    "Not specified"
+                                )}
+
+                            </div>
+
+
+                            <button
+                                id="apply-${drive.id}"
+                                class="apply-btn"
+                                onclick="applyForDrive(${drive.id})"
+                            >
+                                Apply Now
+                            </button>
+
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+
+        // Check already submitted applications
+
+        checkExistingApplications(drives);
+
+
+    } catch (error) {
+
+        console.error(
+            "Drive loading error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error">
+
+                <h3>
+                    Unable to load placement drives
+                </h3>
+
+                <p>
+                    Make sure Spring Boot is running.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+// =========================================
+// APPLY FOR DRIVE
+// =========================================
+
+async function applyForDrive(driveId) {
+
+    const student =
+        getLoggedInStudent();
+
+
+    if (!student) {
+        return;
+    }
+
+
+    if (!student.email) {
+
+        alert(
+            "Student email not found. Please login again."
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "apply-" + driveId
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Applying...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/applications",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        studentEmail:
+                            student.email,
+
+                        driveId:
+                            driveId
+
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Application response:",
+            data
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Application failed"
+            );
+        }
+
+
+        button.textContent =
+            "✓ Applied";
+
+        button.classList.add(
+            "applied"
+        );
+
+
+        alert(
+            "Application submitted successfully!"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Application error:",
+            error
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Apply Now";
+
+
+        alert(
+            "Unable to apply: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+// =========================================
+// CHECK EXISTING APPLICATIONS
+// =========================================
+
+async function checkExistingApplications(
+    drives
+) {
+
+    const student =
+        getLoggedInStudent();
+
+
+    if (!student || !student.email) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/applications/" +
+                encodeURIComponent(
+                    student.email
+                )
+            );
+
+
+        if (!response.ok) {
+            return;
+        }
+
+
+        const applications =
+            await response.json();
+
+
+        applications.forEach(
+            function (application) {
+
+                const button =
+                    document.getElementById(
+                        "apply-" +
+                        application.driveId
+                    );
+
+
+                if (button) {
+
+                    button.textContent =
+                        "✓ Applied";
+
+                    button.classList.add(
+                        "applied"
+                    );
+
+                    button.disabled =
+                        true;
+
+                }
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Existing applications error:",
+            error
+        );
+
+    }
+
+}
+
+
+
+// =========================================
+// DASHBOARD
+// =========================================
+
+function goDashboard() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+
+// =========================================
+// SECURITY
+// =========================================
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+
+// =========================================
+// START
+// =========================================
+
+loadDrives();
+
+
+</script>
+
+
+</body>
+
+</html>

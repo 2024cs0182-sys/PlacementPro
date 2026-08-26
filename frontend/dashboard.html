@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | PlacementPro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .dashboard-page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .dashboard-header {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .dashboard-brand span {
+            color: #2563eb;
+        }
+
+        .logout-btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #111827;
+            color: white;
+            font-weight: 600;
+        }
+
+        .welcome-card {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+            padding: 30px;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .welcome-card h1 {
+            margin: 0 0 8px;
+        }
+
+        .welcome-card p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .dashboard-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .dashboard-card h3 {
+            margin-top: 0;
+        }
+
+        .dashboard-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .dashboard-card button {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .dashboard-card button:hover {
+            background: #1d4ed8;
+        }
+
+        .profile-info {
+            line-height: 1.9;
+        }
+
+        .profile-info strong {
+            color: #111827;
+        }
+
+        .profile-info span {
+            color: #4b5563;
+        }
+
+        .loading {
+            color: #2563eb;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        @media (max-width: 800px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header {
+                gap: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<main class="dashboard-page">
+
+
+    <!-- HEADER -->
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+            Placement<span>Pro</span>
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logoutStudent()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome-card">
+
+        <h1>
+            Welcome,
+            <span id="studentName">Student</span>
+            👋
+        </h1>
+
+        <p>
+            Your placement preparation workspace
+        </p>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- PROFILE -->
+
+        <div class="dashboard-card">
+
+            <h3>👤 My Profile</h3>
+
+            <div class="profile-info">
+
+                <div>
+                    <strong>Name:</strong>
+                    <span id="profileName"
+                          class="loading">
+                        Loading...
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Email:</strong>
+                    <span id="profileEmail"
+                          class="loading">
+                        Loading...
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Department:</strong>
+                    <span id="profileDepartment"
+                          class="loading">
+                        Loading...
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Phone:</strong>
+                    <span id="profilePhone"
+                          class="loading">
+                        Loading...
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLACEMENT DRIVES -->
+
+        <div class="dashboard-card">
+
+            <h3>💼 Placement Drives</h3>
+
+            <p>
+                View upcoming company placement
+                drives and apply for suitable
+                opportunities.
+            </p>
+
+            <button onclick="openDrives()">
+                View Drives
+            </button>
+
+        </div>
+
+
+        <!-- APPLICATIONS -->
+
+        <div class="dashboard-card">
+
+            <h3>📋 Applications</h3>
+
+            <p>
+                Track the jobs and placement drives
+                you have applied for.
+            </p>
+
+           <button onclick="window.location.href='applications.html'">
+    My Applications
+           </button>
+
+        </div>
+
+
+        <!-- APTITUDE -->
+
+        <div class="dashboard-card">
+
+            <h3>🧠 Aptitude Practice</h3>
+
+            <p>
+                Practice aptitude questions and
+                improve your placement preparation.
+            </p>
+
+            <button onclick="openAptitude()">
+                Start Practice
+            </button>
+
+        </div>
+
+
+        <!-- JAVA DSA -->
+
+        <div class="dashboard-card">
+
+            <h3>💻 Java & DSA</h3>
+
+            <p>
+                Track your Java programming and
+                DSA problem-solving progress.
+            </p>
+
+            <button onclick="window.location.href='dsa.html'">
+    Java & DSA
+</button>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="dashboard-card">
+
+            <h3>📊 My Progress</h3>
+
+            <p>
+                View your aptitude, Java and DSA
+                preparation progress.
+            </p>
+
+            <button onclick="window.location.href='progress.html'">
+    Progress
+</button>
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="dashboard-card">
+
+            <h3>📝 Notes</h3>
+
+            <p>
+                Save and manage your important
+                placement preparation notes.
+            </p>
+
+            <button onclick="openNotes()">
+                Open Notes
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+
+// =========================================
+// LOAD STUDENT PROFILE FROM BACKEND
+// =========================================
+
+async function loadStudentProfile() {
+
+    const savedStudent =
+        localStorage.getItem("student");
+
+
+    // No login information
+
+    if (!savedStudent) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    try {
+
+        const loggedInStudent =
+            JSON.parse(savedStudent);
+
+
+        const email =
+            loggedInStudent.email;
+
+
+        if (!email) {
+
+            localStorage.removeItem("student");
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        console.log(
+            "Loading profile for:",
+            email
+        );
+
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/students/"
+                + encodeURIComponent(email)
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load student profile"
+            );
+        }
+
+
+        const student =
+            await response.json();
+
+
+        console.log(
+            "Student profile:",
+            student
+        );
+
+
+        // UPDATE DASHBOARD
+
+        document.getElementById(
+            "studentName"
+        ).textContent =
+            student.name || "Student";
+
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            student.name || "-";
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent =
+            student.email || "-";
+
+
+        document.getElementById(
+            "profileDepartment"
+        ).textContent =
+            student.department ||
+            "Not added";
+
+
+        document.getElementById(
+            "profilePhone"
+        ).textContent =
+            student.phone ||
+            "Not added";
+
+
+        // Remove loading style
+
+        document.getElementById(
+            "profileName"
+        ).classList.remove("loading");
+
+
+        document.getElementById(
+            "profileEmail"
+        ).classList.remove("loading");
+
+
+        document.getElementById(
+            "profileDepartment"
+        ).classList.remove("loading");
+
+
+        document.getElementById(
+            "profilePhone"
+        ).classList.remove("loading");
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile loading error:",
+            error
+        );
+
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            "Unable to load";
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent =
+            "Unable to load";
+
+
+        document.getElementById(
+            "profileDepartment"
+        ).textContent =
+            "Unable to load";
+
+
+        document.getElementById(
+            "profilePhone"
+        ).textContent =
+            "Unable to load";
+
+    }
+
+}
+
+
+// =========================================
+// NAVIGATION
+// =========================================
+
+function openDrives() {
+
+    window.location.href =
+        "drives.html";
+
+}
+
+
+function openApplications() {
+
+    window.location.href =
+        "applications.html";
+
+}
+
+
+function openAptitude() {
+
+    window.location.href =
+        "aptitude.html";
+
+}
+
+
+function openJavaDSA() {
+
+    window.location.href =
+        "java-dsa.html";
+
+}
+
+
+function openProgress() {
+
+    window.location.href =
+        "progress.html";
+
+}
+
+
+function openNotes() {
+
+    window.location.href =
+        "notes.html";
+
+}
+
+
+// =========================================
+// LOGOUT
+// =========================================
+
+function logoutStudent() {
+
+    localStorage.removeItem("student");
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+// =========================================
+// START
+// =========================================
+
+loadStudentProfile();
+
+
+</script>
+
+</body>
+
+</html>

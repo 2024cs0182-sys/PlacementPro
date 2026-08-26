@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progress | PlacementPro</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .header {
+            max-width: 1100px;
+            margin: 0 auto 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .back-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .intro {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+        }
+
+        .intro h1 {
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #6b7280;
+        }
+
+        .overall {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .overall h2 {
+            margin-top: 0;
+        }
+
+        .overall-bar {
+            width: 100%;
+            height: 18px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .overall-fill {
+            height: 100%;
+            width: 0%;
+            background: #2563eb;
+            transition: width 0.5s;
+        }
+
+        .overall-text {
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        .cards {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .number {
+            font-size: 34px;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 15px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            width: 0%;
+            background: #16a34a;
+        }
+
+        .info {
+            margin-top: 12px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+    <header class="header">
+
+        <div class="brand">
+            Placement<span>Pro</span>
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='dashboard.html'"
+        >
+            ← Dashboard
+        </button>
+
+    </header>
+
+
+    <section class="intro">
+
+        <h1>📊 My Progress</h1>
+
+        <p>
+            Track your placement preparation progress.
+        </p>
+
+    </section>
+
+
+    <section class="overall">
+
+        <h2>Overall Preparation</h2>
+
+        <div class="overall-bar">
+
+            <div
+                id="overallFill"
+                class="overall-fill"
+            ></div>
+
+        </div>
+
+        <div
+            id="overallText"
+            class="overall-text"
+        >
+            0%
+        </div>
+
+    </section>
+
+
+    <section class="cards">
+
+
+        <!-- DSA -->
+
+        <div class="card">
+
+            <h3>💻 Java & DSA</h3>
+
+            <div
+                id="dsaNumber"
+                class="number"
+            >
+                0%
+            </div>
+
+            <div class="bar">
+
+                <div
+                    id="dsaFill"
+                    class="fill"
+                ></div>
+
+            </div>
+
+            <div
+                id="dsaInfo"
+                class="info"
+            >
+                0 problems solved
+            </div>
+
+        </div>
+
+
+        <!-- APTITUDE -->
+
+        <div class="card">
+
+            <h3>🧠 Aptitude</h3>
+
+            <div
+                id="aptitudeNumber"
+                class="number"
+            >
+                0%
+            </div>
+
+            <div class="bar">
+
+                <div
+                    id="aptitudeFill"
+                    class="fill"
+                ></div>
+
+            </div>
+
+            <div
+                id="aptitudeInfo"
+                class="info"
+            >
+                Practice aptitude regularly
+            </div>
+
+        </div>
+
+
+        <!-- APPLICATIONS -->
+
+        <div class="card">
+
+            <h3>📋 Applications</h3>
+
+            <div
+                id="applicationNumber"
+                class="number"
+            >
+                0
+            </div>
+
+            <div class="bar">
+
+                <div
+                    id="applicationFill"
+                    class="fill"
+                ></div>
+
+            </div>
+
+            <div
+                id="applicationInfo"
+                class="info"
+            >
+                Applications submitted
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script>
+
+
+// ================================
+// DSA PROGRESS
+// ================================
+
+const dsaSolved =
+    JSON.parse(
+        localStorage.getItem(
+            "javaDsaSolved"
+        )
+    ) || [];
+
+const totalDSA = 8;
+
+const dsaPercent =
+    Math.round(
+        (dsaSolved.length / totalDSA) * 100
+    );
+
+
+document.getElementById(
+    "dsaNumber"
+).textContent =
+    dsaPercent + "%";
+
+
+document.getElementById(
+    "dsaFill"
+).style.width =
+    dsaPercent + "%";
+
+
+document.getElementById(
+    "dsaInfo"
+).textContent =
+    dsaSolved.length +
+    " problems solved";
+
+
+// ================================
+// APTITUDE
+// ================================
+
+const aptitudePercent =
+    Number(
+        localStorage.getItem(
+            "aptitudeProgress"
+        )
+    ) || 0;
+
+
+document.getElementById(
+    "aptitudeNumber"
+).textContent =
+    aptitudePercent + "%";
+
+
+document.getElementById(
+    "aptitudeFill"
+).style.width =
+    aptitudePercent + "%";
+
+
+document.getElementById(
+    "aptitudeInfo"
+).textContent =
+    aptitudePercent +
+    "% aptitude progress";
+
+
+// ================================
+// APPLICATIONS
+// ================================
+
+async function loadApplications() {
+
+    const studentData =
+        localStorage.getItem("student");
+
+
+    if (!studentData) {
+        calculateOverall(
+            dsaPercent,
+            aptitudePercent,
+            0
+        );
+        return;
+    }
+
+
+    const student =
+        JSON.parse(studentData);
+
+
+    try {
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/applications/"
+                + encodeURIComponent(
+                    student.email
+                )
+            );
+
+
+        if (!response.ok) {
+            throw new Error();
+        }
+
+
+        const applications =
+            await response.json();
+
+
+        const count =
+            applications.length;
+
+
+        document.getElementById(
+            "applicationNumber"
+        ).textContent =
+            count;
+
+
+        document.getElementById(
+            "applicationInfo"
+        ).textContent =
+            count +
+            " applications submitted";
+
+
+        const applicationPercent =
+            Math.min(
+                count * 20,
+                100
+            );
+
+
+        document.getElementById(
+            "applicationFill"
+        ).style.width =
+            applicationPercent + "%";
+
+
+        calculateOverall(
+            dsaPercent,
+            aptitudePercent,
+            applicationPercent
+        );
+
+
+    } catch (error) {
+
+        calculateOverall(
+            dsaPercent,
+            aptitudePercent,
+            0
+        );
+
+    }
+
+}
+
+
+// ================================
+// OVERALL
+// ================================
+
+function calculateOverall(
+    dsa,
+    aptitude,
+    applications
+) {
+
+    const overall =
+        Math.round(
+            (dsa +
+                aptitude +
+                applications) / 3
+        );
+
+
+    document.getElementById(
+        "overallFill"
+    ).style.width =
+        overall + "%";
+
+
+    document.getElementById(
+        "overallText"
+    ).textContent =
+        overall +
+        "% Overall Preparation";
+
+}
+
+
+loadApplications();
+
+
+</script>
+
+</body>
+
+</html>

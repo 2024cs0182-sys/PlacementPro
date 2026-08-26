@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Java & DSA | PlacementPro</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+
+        .brand span {
+            color: #2563eb;
+        }
+
+
+        .back-btn {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+
+        /* INTRO */
+
+        .intro {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+
+        .intro h1 {
+            margin: 0 0 10px;
+        }
+
+
+        .intro p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+
+        /* TABS */
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+
+        .tab-btn {
+            border: none;
+
+            padding: 11px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            background: #e5e7eb;
+
+            font-weight: 700;
+        }
+
+
+        .tab-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        /* MAIN GRID */
+
+        .content {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                280px 1fr;
+
+            gap: 20px;
+        }
+
+
+        /* TOPIC PANEL */
+
+        .topic-panel {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+
+            height: fit-content;
+        }
+
+
+        .topic-panel h3 {
+            margin-top: 0;
+        }
+
+
+        .topic-btn {
+            width: 100%;
+
+            text-align: left;
+
+            border: none;
+
+            background: #f3f4f6;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .topic-btn:hover {
+            background: #dbeafe;
+        }
+
+
+        .topic-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        /* PRACTICE */
+
+        .practice-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+
+        .topic-label {
+            color: #2563eb;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+
+        .question {
+            font-size: 21px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        .question-description {
+            color: #6b7280;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+
+        .code-box {
+            background: #111827;
+
+            color: #f9fafb;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+
+            white-space: pre-wrap;
+        }
+
+
+        /* OPTIONS */
+
+        .options {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .option {
+            padding: 14px;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+        }
+
+
+        .option:hover {
+            border-color: #2563eb;
+        }
+
+
+        .option.selected {
+            border-color: #2563eb;
+
+            background: #eff6ff;
+        }
+
+
+        /* FOOTER */
+
+        .practice-footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 25px;
+        }
+
+
+        .question-count {
+            color: #6b7280;
+        }
+
+
+        .next-btn,
+        .solve-btn,
+        .restart-btn {
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+
+        .next-btn:hover,
+        .solve-btn:hover,
+        .restart-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* RESULT */
+
+        .result {
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        .result-score {
+            font-size: 48px;
+
+            font-weight: 800;
+
+            color: #2563eb;
+
+            margin: 20px;
+        }
+
+
+        .result p {
+            color: #6b7280;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 15px;
+            }
+
+
+            .header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+
+            .tabs {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            Placement<span>Pro</span>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <h1>
+            💻 Java & DSA Practice
+        </h1>
+
+        <p>
+            Improve your programming skills through
+            Java coding practice and Data Structures
+            & Algorithms problems.
+        </p>
+
+
+        <div class="tabs">
+
+            <button
+                class="tab-btn active"
+                onclick="changeMode('Java', this)"
+            >
+                ☕ Java
+            </button>
+
+
+            <button
+                class="tab-btn"
+                onclick="changeMode('DSA', this)"
+            >
+                🧩 DSA
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- TOPICS -->
+
+        <aside class="topic-panel">
+
+            <h3>
+                Topics
+            </h3>
+
+
+            <div id="topicContainer">
+            </div>
+
+        </aside>
+
+
+
+        <!-- PRACTICE -->
+
+        <main class="practice-card">
+
+
+            <div id="practiceArea">
+
+                <div
+                    class="topic-label"
+                    id="topicLabel"
+                >
+                    Java
+                </div>
+
+
+                <div
+                    class="question"
+                    id="questionText"
+                >
+                </div>
+
+
+                <div
+                    class="question-description"
+                    id="questionDescription"
+                >
+                </div>
+
+
+                <div
+                    class="code-box"
+                    id="codeBox"
+                    style="display:none;"
+                >
+                </div>
+
+
+                <div
+                    class="options"
+                    id="optionsContainer"
+                >
+                </div>
+
+
+                <div class="practice-footer">
+
+                    <span
+                        class="question-count"
+                        id="questionCount"
+                    >
+                        Question 1 / 5
+                    </span>
+
+
+                    <button
+                        class="next-btn"
+                        id="nextButton"
+                        onclick="nextQuestion()"
+                    >
+                        Next →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RESULT -->
+
+            <div
+                class="result"
+                id="resultArea"
+            >
+
+                <h2>
+                    🎉 Practice Completed!
+                </h2>
+
+
+                <div
+                    class="result-score"
+                    id="resultScore"
+                >
+                    0/5
+                </div>
+
+
+                <p
+                    id="resultMessage"
+                >
+                </p>
+
+
+                <button
+                    class="restart-btn"
+                    onclick="restartPractice()"
+                >
+                    Practice Again
+                </button>
+
+            </div>
+
+
+        </main>
+
+    </section>
+
+</div>
+
+
+
+<script>
+
+
+// =========================================
+// LOGIN CHECK
+// =========================================
+
+const studentData =
+    localStorage.getItem("student");
+
+
+if (!studentData) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+// =========================================
+// JAVA QUESTIONS
+// =========================================
+
+const javaQuestions = [
+
+    {
+        topic: "Java Basics",
+
+        question:
+            "Which keyword is used to create a class in Java?",
+
+        description:
+            "Choose the correct Java keyword.",
+
+        options: [
+            "class",
+            "Class",
+            "new",
+            "object"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        topic: "Java Basics",
+
+        question:
+            "Which method is the entry point of a Java program?",
+
+        description:
+            "Every normal Java application starts execution from a specific method.",
+
+        options: [
+            "start()",
+            "main()",
+            "run()",
+            "execute()"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        topic: "Arrays",
+
+        question:
+            "What is the index of the first element in a Java array?",
+
+        description:
+            "Java arrays use zero-based indexing.",
+
+        options: [
+            "0",
+            "1",
+            "-1",
+            "Depends on the array"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        topic: "Strings",
+
+        question:
+            "Which method is commonly used to find the length of a String?",
+
+        description:
+            "Select the correct Java String method.",
+
+        options: [
+            "size()",
+            "length()",
+            "count()",
+            "getLength()"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        topic: "OOP",
+
+        question:
+            "Which concept allows a child class to acquire properties and methods of a parent class?",
+
+        description:
+            "This is one of the major principles of Object-Oriented Programming.",
+
+        options: [
+            "Encapsulation",
+            "Inheritance",
+            "Abstraction",
+            "Polymorphism"
+        ],
+
+        answer: 1
+    }
+
+];
+
+
+
+// =========================================
+// DSA QUESTIONS
+// =========================================
+
+const dsaQuestions = [
+
+    {
+        topic: "Arrays",
+
+        question:
+            "What is the time complexity of accessing an element by index in an array?",
+
+        description:
+            "For example, accessing arr[5].",
+
+        options: [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n²)"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        topic: "Linked List",
+
+        question:
+            "Which data structure stores elements using nodes connected by links?",
+
+        description:
+            "Each node generally contains data and a reference to another node.",
+
+        options: [
+            "Array",
+            "Linked List",
+            "Stack",
+            "Queue"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        topic: "Stack",
+
+        question:
+            "Which principle does a Stack follow?",
+
+        description:
+            "Think about which element is removed first.",
+
+        options: [
+            "FIFO",
+            "LIFO",
+            "Random",
+            "Priority"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        topic: "Queue",
+
+        question:
+            "Which principle does a Queue follow?",
+
+        description:
+            "The first inserted element is normally removed first.",
+
+        options: [
+            "LIFO",
+            "FIFO",
+            "Random",
+            "Binary"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        topic: "Searching",
+
+        question:
+            "What is the time complexity of Binary Search on a sorted array?",
+
+        description:
+            "Binary Search repeatedly divides the search space into two halves.",
+
+        options: [
+            "O(n)",
+            "O(n²)",
+            "O(log n)",
+            "O(1)"
+        ],
+
+        answer: 2
+    }
+
+];
+
+
+
+// =========================================
+// VARIABLES
+// =========================================
+
+let mode = "Java";
+
+let questions = javaQuestions;
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let selectedAnswer = null;
+
+
+
+// =========================================
+// CHANGE JAVA / DSA
+// =========================================
+
+function changeMode(newMode, button) {
+
+    mode = newMode;
+
+
+    if (mode === "Java") {
+
+        questions = javaQuestions;
+
+    } else {
+
+        questions = dsaQuestions;
+
+    }
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    selectedAnswer = null;
+
+
+    document.querySelectorAll(
+        ".tab-btn"
+    ).forEach(
+        function(tab) {
+
+            tab.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "resultArea"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "practiceArea"
+    ).style.display = "block";
+
+
+    loadTopics();
+
+    loadQuestion();
+
+}
+
+
+
+// =========================================
+// LOAD TOPICS
+// =========================================
+
+function loadTopics() {
+
+    const container =
+        document.getElementById(
+            "topicContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const topics = [];
+
+
+    questions.forEach(
+        function(question) {
+
+            if (
+                !topics.includes(
+                    question.topic
+                )
+            ) {
+
+                topics.push(
+                    question.topic
+                );
+
+            }
+
+        }
+    );
+
+
+    topics.forEach(
+        function(topic, index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "topic-btn";
+
+
+            if (index === 0) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.textContent =
+                topic;
+
+
+            button.onclick =
+                function() {
+
+                    selectTopic(
+                        topic,
+                        button
+                    );
+
+                };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+
+// =========================================
+// SELECT TOPIC
+// =========================================
+
+function selectTopic(
+    topic,
+    button
+) {
+
+    document.querySelectorAll(
+        ".topic-btn"
+    ).forEach(
+        function(item) {
+
+            item.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    const filtered =
+        mode === "Java"
+            ? javaQuestions.filter(
+                function(question) {
+                    return question.topic === topic;
+                }
+            )
+            : dsaQuestions.filter(
+                function(question) {
+                    return question.topic === topic;
+                }
+            );
+
+
+    if (filtered.length > 0) {
+
+        questions = filtered;
+
+        currentQuestion = 0;
+
+        score = 0;
+
+        selectedAnswer = null;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+
+// =========================================
+// LOAD QUESTION
+// =========================================
+
+function loadQuestion() {
+
+    const question =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "topicLabel"
+    ).textContent =
+        mode + " • " + question.topic;
+
+
+    document.getElementById(
+        "questionText"
+    ).textContent =
+        question.question;
+
+
+    document.getElementById(
+        "questionDescription"
+    ).textContent =
+        question.description;
+
+
+    document.getElementById(
+        "questionCount"
+    ).textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " / " +
+        questions.length;
+
+
+    const optionsContainer =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    optionsContainer.innerHTML = "";
+
+
+    selectedAnswer = null;
+
+
+    question.options.forEach(
+        function(option, index) {
+
+            const optionElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            optionElement.className =
+                "option";
+
+
+            optionElement.textContent =
+                option;
+
+
+            optionElement.onclick =
+                function() {
+
+                    selectAnswer(
+                        index,
+                        optionElement
+                    );
+
+                };
+
+
+            optionsContainer.appendChild(
+                optionElement
+            );
+
+        }
+    );
+
+
+    const nextButton =
+        document.getElementById(
+            "nextButton"
+        );
+
+
+    if (
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextButton.textContent =
+            "Submit ✓";
+
+    } else {
+
+        nextButton.textContent =
+            "Next →";
+
+    }
+
+}
+
+
+
+// =========================================
+// SELECT ANSWER
+// =========================================
+
+function selectAnswer(
+    index,
+    element
+) {
+
+    selectedAnswer = index;
+
+
+    document.querySelectorAll(
+        ".option"
+    ).forEach(
+        function(option) {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+    );
+
+
+    element.classList.add(
+        "selected"
+    );
+
+}
+
+
+
+// =========================================
+// NEXT QUESTION
+// =========================================
+
+function nextQuestion() {
+
+
+    if (selectedAnswer === null) {
+
+        alert(
+            "Please select an answer first."
+        );
+
+        return;
+
+    }
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    if (
+        selectedAnswer ===
+        question.answer
+    ) {
+
+        score++;
+
+    }
+
+
+    if (
+        currentQuestion <
+        questions.length - 1
+    ) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    } else {
+
+        finishPractice();
+
+    }
+
+}
+
+
+
+// =========================================
+// FINISH
+// =========================================
+
+function finishPractice() {
+
+
+    document.getElementById(
+        "practiceArea"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "resultArea"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "resultScore"
+    ).textContent =
+        score +
+        "/" +
+        questions.length;
+
+
+    const percentage =
+        Math.round(
+            (score / questions.length) *
+            100
+        );
+
+
+    document.getElementById(
+        "resultMessage"
+    ).textContent =
+        mode +
+        " practice completed. " +
+        "Your score is " +
+        percentage +
+        "%.";
+
+
+    saveProgress();
+
+}
+
+
+
+// =========================================
+// SAVE PROGRESS
+// =========================================
+
+function saveProgress() {
+
+    let progress;
+
+
+    const saved =
+        localStorage.getItem(
+            "placementProgress"
+        );
+
+
+    if (saved) {
+
+        try {
+
+            progress =
+                JSON.parse(saved);
+
+        } catch (error) {
+
+            progress = createDefaultProgress();
+
+        }
+
+    } else {
+
+        progress =
+            createDefaultProgress();
+
+    }
+
+
+    const percentage =
+        Math.round(
+            (score / questions.length) *
+            100
+        );
+
+
+    if (mode === "Java") {
+
+        progress.javaProgress =
+            Math.max(
+                progress.javaProgress,
+                percentage
+            );
+
+    }
+
+
+    if (mode === "DSA") {
+
+        progress.dsaProgress =
+            Math.max(
+                progress.dsaProgress,
+                percentage
+            );
+
+    }
+
+
+    progress.problemsSolved +=
+        score;
+
+
+    localStorage.setItem(
+        "placementProgress",
+        JSON.stringify(progress)
+    );
+
+}
+
+
+
+// =========================================
+// DEFAULT PROGRESS
+// =========================================
+
+function createDefaultProgress() {
+
+    return {
+
+        problemsSolved: 0,
+
+        aptitudeScore: 0,
+
+        javaProgress: 0,
+
+        dsaProgress: 0
+
+    };
+
+}
+
+
+
+// =========================================
+// RESTART
+// =========================================
+
+function restartPractice() {
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    selectedAnswer = null;
+
+
+    document.getElementById(
+        "practiceArea"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "resultArea"
+    ).style.display =
+        "none";
+
+
+    loadTopics();
+
+    loadQuestion();
+
+}
+
+
+
+// =========================================
+// START
+// =========================================
+
+loadTopics();
+
+loadQuestion();
+
+</script>
+
+
+</body>
+
+</html>

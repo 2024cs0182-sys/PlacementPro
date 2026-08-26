@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PlacementPro | Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f6f8fc;
+    color:#111827;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:245px;
+    height:100vh;
+    background:#111827;
+    color:white;
+    padding:25px 16px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    padding:0 12px 30px;
+}
+
+.logo span{
+    color:#3b82f6;
+}
+
+.menu-title{
+    color:#9ca3af;
+    font-size:11px;
+    margin:20px 12px 10px;
+    text-transform:uppercase;
+}
+
+.menu button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#d1d5db;
+    padding:13px 14px;
+    margin:3px 0;
+    border-radius:10px;
+    text-align:left;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+.menu button:hover,
+.menu button.active{
+    background:#2563eb;
+    color:white;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:245px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 35px;
+}
+
+.top-title{
+    font-size:20px;
+    font-weight:800;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.user-avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#dbeafe;
+    color:#2563eb;
+
+    display:grid;
+    place-items:center;
+
+    font-weight:800;
+}
+
+.user-name{
+    font-size:14px;
+    font-weight:700;
+}
+
+/* CONTENT */
+
+.content{
+    padding:30px;
+    max-width:1250px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        #1d4ed8,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:white;
+
+    padding:35px;
+
+    border-radius:22px;
+
+    margin-bottom:25px;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    border:45px solid rgba(255,255,255,.08);
+
+    right:-50px;
+    top:-80px;
+}
+
+.hero h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#dbeafe;
+    max-width:650px;
+    line-height:1.6;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:28px;
+}
+
+.stat{
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.04);
+}
+
+.stat-label{
+    color:#6b7280;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+}
+
+/* SECTION */
+
+.section-title{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+/* CARDS */
+
+.card{
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:
+        0 6px 22px
+        rgba(0,0,0,.045);
+
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.08);
+}
+
+.icon{
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    background:#eff6ff;
+
+    display:grid;
+    place-items:center;
+
+    font-size:23px;
+
+    margin-bottom:16px;
+}
+
+.card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#6b7280;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    min-height:42px;
+}
+
+.card button{
+    width:100%;
+
+    margin-top:18px;
+
+    padding:11px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#111827;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+.card button:hover{
+    background:#2563eb;
+}
+
+/* PROFILE */
+
+.profile{
+    margin-top:25px;
+
+    background:white;
+
+    border:1px solid #edf0f5;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+        0 6px 22px
+        rgba(0,0,0,.045);
+}
+
+.profile-title{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.profile-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+.profile-item{
+    padding:15px;
+
+    background:#f9fafb;
+
+    border-radius:10px;
+}
+
+.profile-item small{
+    display:block;
+
+    color:#9ca3af;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    margin-bottom:6px;
+}
+
+.profile-item span{
+    font-weight:700;
+
+    font-size:14px;
+
+    word-break:break-word;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+    .grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .profile-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:750px){
+
+    .sidebar{
+        position:relative;
+
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .stats,
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Placement<span>Pro</span>
+    </div>
+
+
+    <div class="menu-title">
+        Main
+    </div>
+
+
+    <div class="menu">
+
+        <button
+            class="active"
+            onclick="goDashboard()">
+            🏠 Dashboard
+        </button>
+
+
+        <button
+            onclick="goDrives()">
+            💼 Placement Drives
+        </button>
+
+
+        <button
+            onclick="goApplications()">
+            📋 My Applications
+        </button>
+
+    </div>
+
+
+    <div class="menu-title">
+        Preparation
+    </div>
+
+
+    <div class="menu">
+
+        <button
+            onclick="goAptitude()">
+            🧠 Aptitude
+        </button>
+
+
+        <button
+            onclick="goDSA()">
+            💻 Java & DSA
+        </button>
+
+
+        <button
+            onclick="goProgress()">
+            📊 My Progress
+        </button>
+
+    </div>
+
+
+    <div class="menu-title">
+        Account
+    </div>
+
+
+    <div class="menu">
+
+        <button
+            onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="top-title">
+            Student Dashboard
+        </div>
+
+
+        <div class="user-area">
+
+            <div
+                class="user-avatar"
+                id="avatar">
+                S
+            </div>
+
+            <div
+                class="user-name"
+                id="topName">
+                Student
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <h1>
+                Welcome back,
+                <span id="welcomeName">
+                    Student
+                </span>
+                👋
+            </h1>
+
+            <p>
+                Manage your placement journey,
+                discover opportunities, practice
+                coding and track your preparation
+                from one place.
+            </p>
+
+        </div>
+
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Placement Drives
+                </div>
+
+                <div class="stat-value">
+                    Explore
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Preparation
+                </div>
+
+                <div class="stat-value">
+                    Java + DSA
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Applications
+                </div>
+
+                <div class="stat-value">
+                    Track
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FEATURES -->
+
+        <div class="section-title">
+            Placement Workspace
+        </div>
+
+
+        <div class="grid">
+
+
+            <div class="card">
+
+                <div class="icon">
+                    💼
+                </div>
+
+                <h3>
+                    Placement Drives
+                </h3>
+
+                <p>
+                    Find available company
+                    placement opportunities
+                    and apply directly.
+                </p>
+
+                <button
+                    onclick="goDrives()">
+                    Explore Drives
+                </button>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📋
+                </div>
+
+                <h3>
+                    My Applications
+                </h3>
+
+                <p>
+                    Track the companies
+                    and positions you have
+                    applied for.
+                </p>
+
+                <button
+                    onclick="goApplications()">
+                    View Applications
+                </button>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Aptitude Practice
+                </h3>
+
+                <p>
+                    Improve your quantitative
+                    and logical reasoning
+                    skills.
+                </p>
+
+                <button
+                    onclick="goAptitude()">
+                    Start Practice
+                </button>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="icon">
+                    💻
+                </div>
+
+                <h3>
+                    Java & DSA
+                </h3>
+
+                <p>
+                    Practice Java programming
+                    and data structures for
+                    placement interviews.
+                </p>
+
+                <button
+                    onclick="goDSA()">
+                    Practice DSA
+                </button>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3>
+                    My Progress
+                </h3>
+
+                <p>
+                    Monitor your DSA,
+                    aptitude and placement
+                    preparation progress.
+                </p>
+
+                <button
+                    onclick="goProgress()">
+                    View Progress
+                </button>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    Placement Notes
+                </h3>
+
+                <p>
+                    Keep your important
+                    preparation notes in
+                    one place.
+                </p>
+
+                <button
+                    onclick="goNotes()">
+                    Open Notes
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- PROFILE -->
+
+        <div class="profile">
+
+            <div class="profile-title">
+                My Profile
+            </div>
+
+
+            <div class="profile-grid">
+
+
+                <div class="profile-item">
+
+                    <small>
+                        Name
+                    </small>
+
+                    <span id="profileName">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <small>
+                        Email
+                    </small>
+
+                    <span id="profileEmail">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <small>
+                        Department
+                    </small>
+
+                    <span id="profileDepartment">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <small>
+                        Phone
+                    </small>
+
+                    <span id="profilePhone">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<script>
+
+
+/* PROFILE */
+
+async function loadStudent(){
+
+    const saved =
+        localStorage.getItem("student");
+
+
+    if(!saved){
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    try{
+
+        const student =
+            JSON.parse(saved);
+
+
+        const email =
+            student.email;
+
+
+        const response =
+            await fetch(
+                "http://https://placementpro-khij.onrender.com/api/students/"
+                +
+                encodeURIComponent(email)
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Student not found"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const name =
+            data.name || "Student";
+
+
+        document.getElementById(
+            "welcomeName"
+        ).textContent = name;
+
+
+        document.getElementById(
+            "topName"
+        ).textContent = name;
+
+
+        document.getElementById(
+            "avatar"
+        ).textContent =
+            name.charAt(0).toUpperCase();
+
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            data.name || "-";
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent =
+            data.email || "-";
+
+
+        document.getElementById(
+            "profileDepartment"
+        ).textContent =
+            data.department ||
+            "Not added";
+
+
+        document.getElementById(
+            "profilePhone"
+        ).textContent =
+            data.phone ||
+            "Not added";
+
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+
+/* NAVIGATION */
+
+function goDashboard(){
+
+    window.location.href =
+        "dashboard_new.html";
+
+}
+
+
+function goDrives(){
+
+    window.location.href =
+        "drives.html";
+
+}
+
+
+function goApplications(){
+
+    window.location.href =
+        "applications.html";
+
+}
+
+
+function goAptitude(){
+
+    window.location.href =
+        "aptitude.html";
+
+}
+
+
+function goDSA(){
+
+    window.location.href =
+        "dsa.html";
+
+}
+
+
+function goProgress(){
+
+    window.location.href =
+        "progress.html";
+
+}
+
+
+function goNotes(){
+
+    window.location.href =
+        "notes.html";
+
+}
+
+
+function logout(){
+
+    localStorage.removeItem(
+        "student"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+loadStudent();
+
+</script>
+
+
+</body>
+
+</html>

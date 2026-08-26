@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Aptitude Practice | PlacementPro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .header {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .intro {
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .intro h1 {
+            margin: 0 0 10px;
+        }
+
+        .intro p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .quiz-card {
+            max-width: 1100px;
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .category {
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px;
+
+            border: 2px solid #e5e7eb;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .footer {
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .count {
+            color: #6b7280;
+        }
+
+        .next-btn,
+        .restart-btn {
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .next-btn:hover,
+        .restart-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+        }
+
+        .score {
+            font-size: 50px;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 20px;
+        }
+
+        .result p {
+            color: #6b7280;
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            Placement<span>Pro</span>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <h1>
+            🧠 Aptitude Practice
+        </h1>
+
+        <p>
+            Practice quantitative aptitude,
+            logical reasoning and basic placement
+            questions.
+        </p>
+
+    </section>
+
+
+
+    <!-- QUIZ -->
+
+    <main class="quiz-card">
+
+
+        <div id="quizArea">
+
+            <div
+                class="category"
+                id="category"
+            >
+                Quantitative Aptitude
+            </div>
+
+
+            <div
+                class="question"
+                id="question"
+            >
+            </div>
+
+
+            <div
+                class="options"
+                id="options"
+            >
+            </div>
+
+
+            <div class="footer">
+
+                <span
+                    class="count"
+                    id="count"
+                >
+                    Question 1 / 5
+                </span>
+
+
+                <button
+                    class="next-btn"
+                    onclick="nextQuestion()"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESULT -->
+
+        <div
+            class="result"
+            id="result"
+        >
+
+            <h2>
+                🎉 Aptitude Test Completed!
+            </h2>
+
+
+            <div
+                class="score"
+                id="score"
+            >
+                0/5
+            </div>
+
+
+            <p
+                id="message"
+            >
+            </p>
+
+
+            <button
+                class="restart-btn"
+                onclick="restartQuiz()"
+            >
+                Try Again
+            </button>
+
+
+            <br><br>
+
+
+            <a
+                href="progress.html"
+                class="back-btn"
+            >
+                View My Progress →
+            </a>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+
+// =========================================
+// LOGIN CHECK
+// =========================================
+
+const studentData =
+    localStorage.getItem("student");
+
+
+if (!studentData) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+// =========================================
+// QUESTIONS
+// =========================================
+
+const questions = [
+
+    {
+        category: "Quantitative Aptitude",
+
+        question:
+            "What is 20% of 250?",
+
+        options: [
+            "25",
+            "40",
+            "50",
+            "60"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        category: "Quantitative Aptitude",
+
+        question:
+            "If a train travels 60 km in 1 hour, how far will it travel in 3 hours?",
+
+        options: [
+            "120 km",
+            "150 km",
+            "180 km",
+            "200 km"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        category: "Logical Reasoning",
+
+        question:
+            "Find the next number: 2, 4, 6, 8, ?",
+
+        options: [
+            "9",
+            "10",
+            "11",
+            "12"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        category: "Logical Reasoning",
+
+        question:
+            "If all roses are flowers and some flowers are red, which statement is definitely true?",
+
+        options: [
+            "All roses are red",
+            "All flowers are roses",
+            "Roses are flowers",
+            "No roses are flowers"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        category: "Quantitative Aptitude",
+
+        question:
+            "A shirt costs ₹1000. If there is a 10% discount, what is the final price?",
+
+        options: [
+            "₹800",
+            "₹850",
+            "₹900",
+            "₹950"
+        ],
+
+        answer: 2
+    }
+
+];
+
+
+
+// =========================================
+// VARIABLES
+// =========================================
+
+let currentQuestion = 0;
+
+let scoreValue = 0;
+
+let selectedAnswer = null;
+
+
+
+// =========================================
+// LOAD QUESTION
+// =========================================
+
+function loadQuestion() {
+
+    const q =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "category"
+    ).textContent =
+        q.category;
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        q.question;
+
+
+    document.getElementById(
+        "count"
+    ).textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " / " +
+        questions.length;
+
+
+    const options =
+        document.getElementById(
+            "options"
+        );
+
+
+    options.innerHTML = "";
+
+
+    selectedAnswer = null;
+
+
+    q.options.forEach(
+        function(option, index) {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "option";
+
+
+            element.textContent =
+                option;
+
+
+            element.onclick =
+                function() {
+
+                    selectAnswer(
+                        index,
+                        element
+                    );
+
+                };
+
+
+            options.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+
+// =========================================
+// SELECT ANSWER
+// =========================================
+
+function selectAnswer(
+    index,
+    element
+) {
+
+    selectedAnswer = index;
+
+
+    document.querySelectorAll(
+        ".option"
+    ).forEach(
+        function(option) {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+    );
+
+
+    element.classList.add(
+        "selected"
+    );
+
+}
+
+
+
+// =========================================
+// NEXT QUESTION
+// =========================================
+
+function nextQuestion() {
+
+
+    if (selectedAnswer === null) {
+
+        alert(
+            "Please select an answer first."
+        );
+
+        return;
+
+    }
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    if (
+        selectedAnswer === q.answer
+    ) {
+
+        scoreValue++;
+
+    }
+
+
+    if (
+        currentQuestion <
+        questions.length - 1
+    ) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    } else {
+
+        finishQuiz();
+
+    }
+
+}
+
+
+
+// =========================================
+// FINISH QUIZ
+// =========================================
+
+function finishQuiz() {
+
+
+    document.getElementById(
+        "quizArea"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "score"
+    ).textContent =
+        scoreValue +
+        "/" +
+        questions.length;
+
+
+    const percentage =
+        Math.round(
+            (scoreValue / questions.length) *
+            100
+        );
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+        "You scored " +
+        percentage +
+        "%. Your aptitude score has been saved.";
+
+
+    saveAptitudeProgress();
+
+}
+
+
+
+// =========================================
+// SAVE APTITUDE PROGRESS
+// =========================================
+
+function saveAptitudeProgress() {
+
+
+    let progress;
+
+
+    const saved =
+        localStorage.getItem(
+            "placementProgress"
+        );
+
+
+    if (saved) {
+
+        try {
+
+            progress =
+                JSON.parse(saved);
+
+        } catch (error) {
+
+            progress =
+                createDefaultProgress();
+
+        }
+
+    } else {
+
+        progress =
+            createDefaultProgress();
+
+    }
+
+
+    const percentage =
+        Math.round(
+            (scoreValue / questions.length) *
+            100
+        );
+
+
+    progress.aptitudeScore =
+        Math.max(
+            progress.aptitudeScore || 0,
+            percentage
+        );
+
+
+    progress.problemsSolved =
+        (progress.problemsSolved || 0)
+        + scoreValue;
+
+
+    localStorage.setItem(
+        "placementProgress",
+        JSON.stringify(progress)
+    );
+
+}
+
+
+
+// =========================================
+// DEFAULT PROGRESS
+// =========================================
+
+function createDefaultProgress() {
+
+    return {
+
+        problemsSolved: 0,
+
+        aptitudeScore: 0,
+
+        javaProgress: 0,
+
+        dsaProgress: 0
+
+    };
+
+}
+
+
+
+// =========================================
+// RESTART
+// =========================================
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    scoreValue = 0;
+
+    selectedAnswer = null;
+
+
+    document.getElementById(
+        "quizArea"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "result"
+    ).style.display =
+        "none";
+
+
+    loadQuestion();
+
+}
+
+
+
+// =========================================
+// START
+// =========================================
+
+loadQuestion();
+
+
+</script>
+
+
+</body>
+
+</html>
