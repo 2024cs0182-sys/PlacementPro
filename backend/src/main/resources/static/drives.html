@@ -292,7 +292,7 @@ async function loadDrives() {
 
         const response =
             await fetch(
-                "http://https://placementpro-khij.onrender.com/api/drives"
+                "https://placementpro-khij.onrender.com/api/drives"
             );
 
 
@@ -538,7 +538,7 @@ async function applyForDrive(driveId) {
 
         const response =
             await fetch(
-                "http://https://placementpro-khij.onrender.com/api/applications",
+                "https://placementpro-khij.onrender.com/api/applications",
                 {
                     method: "POST",
 
@@ -638,7 +638,7 @@ async function checkExistingApplications(
 
         const response =
             await fetch(
-                "http://https://placementpro-khij.onrender.com/api/applications/" +
+                "https://placementpro-khij.onrender.com/api/applications/" +
                 encodeURIComponent(
                     student.email
                 )
